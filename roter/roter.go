@@ -1,7 +1,7 @@
 package roter
 
 import (
-	"DemoMall/contrl"
+	"SNSProject/contrl"
 )
 import "github.com/buaazp/fasthttprouter"
 

@@ -1,14 +1,14 @@
 package contrl
 
 import (
-	"DemoMall/helper"
-	"DemoMall/middleware"
-	"DemoMall/model"
-	"DemoMall/validatar"
+	"SNSProject/helper"
+	_ "SNSProject/middleware"
+	"SNSProject/model"
+	"SNSProject/validatar"
 	"fmt"
-	"github.com/dgrijalva/jwt-go"
+	_ "github.com/dgrijalva/jwt-go"
 	"github.com/valyala/fasthttp"
-	"reflect"
+	_ "reflect"
 	"strconv"
 )
 
@@ -69,7 +69,7 @@ func (that *Postcontrl)PushPost(ctx *fasthttp.RequestCtx)  {
 //查询帖子列表
 func (that *Postcontrl)GetPostList(ctx *fasthttp.RequestCtx)  {
 
-	list := model.QueryPostList(1, 10, getUidWithCurrentTokenString(ctx))
+	list := model.QueryPostList(1, 10, string(getUidWithCurrentTokenString(ctx)))
 
 	helper.Print(ctx, "0", list)
 }
@@ -83,7 +83,7 @@ func (that *Postcontrl)GetPostClass(ctx *fasthttp.RequestCtx)  {
 
 //点赞
 func (that *Postcontrl)PostCommend(ctx *fasthttp.RequestCtx)  {
-	uid := getUidWithCurrentTokenString(ctx)
+	uid := string(getUidWithCurrentTokenString(ctx))
 	if uid == "" {
 		helper.Print(ctx, "400", "token解析失败.未登录,或token失效")
 		return
@@ -110,7 +110,7 @@ func (that *Postcontrl)PostCommend(ctx *fasthttp.RequestCtx)  {
 
 //评论
 func (that *Postcontrl)PostComment(ctx *fasthttp.RequestCtx)  {
-	uid := getUidWithCurrentTokenString(ctx)
+	uid := string(getUidWithCurrentTokenString(ctx))
 	intUid, _ := strconv.Atoi(uid)
 
 	var cObject postComment

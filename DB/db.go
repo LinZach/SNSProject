@@ -19,7 +19,7 @@ var DB *sql.DB
 func InitDB()  {
 
 	var err error
-	DB ,err = sql.Open("mysql", "root:1q2w3e4r@tcp(localhost:3306)/skycat")
+	DB ,err = sql.Open("mysql", "root:1q2w3e4r@tcp(localhost:3306)/sns")
 	if err != nil {
 		fmt.Println(err)
 		panic(err)

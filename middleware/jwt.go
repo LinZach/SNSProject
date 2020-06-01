@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"DemoMall/session"
+	"SNSProject/session"
 	"errors"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/valyala/fasthttp"

@@ -1,10 +1,10 @@
 package main
 
 import (
-	"DemoMall/DB"
-	"DemoMall/middleware"
-	"DemoMall/roter"
-	"DemoMall/session"
+	"SNSProject/DB"
+	"SNSProject/middleware"
+	"SNSProject/roter"
+	"SNSProject/session"
 	"fmt"
 	"github.com/valyala/fasthttp"
 	"time"

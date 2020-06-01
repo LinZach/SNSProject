@@ -1,8 +1,8 @@
 package model
 
 import (
-	"DemoMall/DB"
-	"DemoMall/session"
+	"SNSProject/DB"
+	"SNSProject/session"
 	"errors"
 	"fmt"
 	b "github.com/orca-zhang/borm"

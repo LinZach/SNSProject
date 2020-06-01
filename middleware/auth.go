@@ -1,9 +1,9 @@
 package middleware
 
 import (
-	"DemoMall/helper"
-	"DemoMall/model"
-	"DemoMall/validatar"
+	"SNSProject/helper"
+	"SNSProject/model"
+	"SNSProject/validatar"
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/valyala/fasthttp"

@@ -1,9 +1,9 @@
 package contrl
 
 import (
-	"DemoMall/helper"
-	"DemoMall/model"
-	"DemoMall/validatar"
+	"SNSProject/helper"
+	"SNSProject/model"
+	"SNSProject/validatar"
 	"github.com/valyala/fasthttp"
 )
 

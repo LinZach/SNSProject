@@ -1,11 +1,11 @@
 package contrl
 
 import (
-	"DemoMall/Crypt"
-	"DemoMall/helper"
-	"DemoMall/middleware"
-	"DemoMall/model"
-	"DemoMall/validatar"
+	"SNSProject/Crypt"
+	"SNSProject/helper"
+	"SNSProject/middleware"
+	"SNSProject/model"
+	"SNSProject/validatar"
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/valyala/fasthttp"

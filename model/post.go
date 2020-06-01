@@ -1,7 +1,7 @@
 package model
 
 import (
-	"DemoMall/DB"
+	"SNSProject/DB"
 	"fmt"
 	b "github.com/orca-zhang/borm"
 	"strings"

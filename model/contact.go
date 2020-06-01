@@ -1,28 +1,29 @@
 package model
 
 import (
-	"DemoMall/DB"
+	"SNSProject/DB"
 	"encoding/json"
 	"errors"
-	"github.com/orca-zhang/borm"
+
 	"github.com/goinggo/mapstructure"
+	"github.com/orca-zhang/borm"
 )
 
 type Contact struct {
-	Uid int32
+	Uid  int32
 	body string
 }
 
 type ContactBody struct {
-	Uid int32 `json:"uid"`
+	Uid      int32  `json:"uid"`
 	UserName string `json:"user_name"`
-	Avatar string `json:"avatar"`
+	Avatar   string `json:"avatar"`
 }
 
 //添加到联系人
 func AddContact(uid int32, body ContactBody) error {
 	con := Contact{
-		Uid:body.Uid,
+		Uid: body.Uid,
 	}
 
 	var count = 0
