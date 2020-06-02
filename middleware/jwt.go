@@ -86,5 +86,10 @@ func ParesToken(tokenString string, secrtKey []byte) (claims jwt.Claims, err err
 	})
 
 	claims = token.Claims
+
+	if !token.Valid {
+		return
+	}
+
 	return
 }

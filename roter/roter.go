@@ -2,13 +2,14 @@ package roter
 
 import (
 	"SNSProject/contrl"
+	"github.com/buaazp/fasthttprouter"
 )
-import "github.com/buaazp/fasthttprouter"
 
 func InitRouter() *fasthttprouter.Router {
 
 	user := contrl.UserContrl{}
 	post := contrl.Postcontrl{}
+	contact := contrl.ContactContrl{}
 
 	router := fasthttprouter.New()
 
@@ -22,6 +23,9 @@ func InitRouter() *fasthttprouter.Router {
 	router.POST("/post/commend", post.PostCommend)
 	router.POST("/post/comment", post.PostComment)
 	router.POST("/post/getComment", post.GetPostComents)
+
+	router.POST("/contact/add", contact.AddToContactList)
+	router.POST("/contact/list", contact.GetContactList)
 
 	return router
 }

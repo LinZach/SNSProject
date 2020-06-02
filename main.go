@@ -14,9 +14,7 @@ func main() {
 
 	DB.InitDB()
 	session.New("127.0.0.1:6379")
-	//model.Insert()
-	//
-	//
+
 	router := roter.InitRouter()
 
 	server := fasthttp.Server{
@@ -30,8 +28,4 @@ func main() {
 	if err := server.ListenAndServe("127.0.0.1:8080"); err != nil {
 		fmt.Print(err)
 	}
-
-	//if err := fasthttp.ListenAndServe(":9096", middleware.Auth()); err != nil {
-	//	fmt.Print("conecting auth fail:", err.Error())
-	//}
 }

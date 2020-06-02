@@ -9,7 +9,6 @@ import (
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/valyala/fasthttp"
-	"reflect"
 )
 
 type UserContrl struct {
@@ -166,7 +165,6 @@ func getUidWithCurrentTokenString(ctx *fasthttp.RequestCtx) int {
 	if err != nil {
 		return 0
 	}
-	uid := claims.(jwt.MapClaims)["uid"]
-	value := reflect.ValueOf(uid)
-	return int(value.Int())
+	uid := claims.(jwt.MapClaims)["uid"].(float64)
+	return int(uid)
 }
