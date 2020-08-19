@@ -35,7 +35,7 @@ type userProfile struct {
 
 //获取盐值
 func (that *UserContrl)GetSlatHandle(ctx *fasthttp.RequestCtx)  {
-	helper.Print(ctx, "0", Crypt.Salt)
+	helper.Print(ctx, "0", Crypt.Slat)
 }
 
 //注册
@@ -120,7 +120,7 @@ func (that *UserContrl)UpdateUserProfile(ctx *fasthttp.RequestCtx)  {
 		Gender:usrPro.Gender,
 		Avatar:usrPro.Avatar,
 		Slogan:usrPro.Slogan,
-		Uid:int32(uid),
+		Uid:int16(uid),
 	}
 
 	excit := validataUserWithUid(user)

@@ -11,18 +11,18 @@ import (
 )
 
 type Contact struct {
-	Uid  int32 `borm:"uid"`
+	Uid  int16 `borm:"uid"`
 	body string `borm:"contact"`
 }
 
 type ContactBody struct {
-	Uid      int32  `json:"uid"`
+	Uid      int16  `json:"uid"`
 	UserName string `json:"user_name"`
 	Avatar   string `json:"avatar"`
 }
 
 //添加到联系人
-func AddContact(uid int32, body ContactBody) error {
+func AddContact(uid int16, body ContactBody) error {
 	con := Contact{
 		Uid: uid,
 	}
@@ -108,7 +108,7 @@ func QueryContactList(uid int32) ([]ContactBody, error) {
 }
 
 //查询联系人
-func queryContactMember(uid int32) (Contact, int, error) {
+func queryContactMember(uid int16) (Contact, int, error) {
 	var con Contact
 
 	table := b.Table(DB.DB, "user_contact")
@@ -117,7 +117,7 @@ func queryContactMember(uid int32) (Contact, int, error) {
 	return con, count, err
 }
 
-func validateIsSwapFirend(uid, fid int32) (bool, error) {
+func validateIsSwapFirend(uid, fid int16) (bool, error) {
 	var con Contact
 
 	table := b.Table(DB.DB, "user_contact")

@@ -1,18 +1,18 @@
 package model
 
 import (
+	"SNSProject/Crypt"
 	"SNSProject/DB"
 	"SNSProject/session"
 	"errors"
 	"fmt"
 	b "github.com/orca-zhang/borm"
-	"golang.org/x/crypto/bcrypt"
 	"strings"
 	"time"
 )
 
 type User struct {
-	Uid  int32 `borm:"uid"`
+	Uid  int16 `borm:"uid"`
 	Username string `borm:"username"`
 	Account  string `borm:"account"`
 	Password string `borm:"password"`
@@ -23,20 +23,13 @@ type User struct {
 
 //插入用户
 func Insert(user User) error {
-
 	t := b.Table(DB.DB, "user").Debug()
 
 	//密码加密存储
-	hash, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
-	if err != nil {
-		return errors.New("存储密码加密失败")
-	}
-	encodePW := string(hash)
-	user.Password = encodePW
+	enCode := Crypt.EnCrypt(user.Password)
+	user.Password = enCode
 
-	//username := "root"
-	_, err = t.Insert(&user)
-
+	_, err := t.Insert(&user)
 	if err != nil {
 		if strings.Contains(err.Error(),"Error 1366") {
 			return errors.New("用户已存在")
@@ -83,9 +76,8 @@ func ValidataUser(user *User) bool {
 		return false
 	}
 
-	err = bcrypt.CompareHashAndPassword([]byte(localUser.Password), []byte(user.Password))
-
-	if err == nil {
+	//验证密码
+	if Crypt.VerifyCrypt(user.Password, localUser.Password) {
 		user.Uid = localUser.Uid
 		return true
 	}
@@ -101,7 +93,7 @@ func UpdateUserProfile(user User) error {
 }
 
 //插入token
-func SetToken(uid int32, token string) error {
+func SetToken(uid int16, token string) error {
 	err := session.Set(string(uid), token, time.Hour * 24)
 	return err
 }

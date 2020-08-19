@@ -26,12 +26,12 @@ func (that *ContactContrl)AddToContactList(ctx *fasthttp.RequestCtx)  {
 	uid := getUidWithCurrentTokenString(ctx)
 
 	body := model.ContactBody{
-		Uid:int32(contact.Uid),
+		Uid:int16(contact.Uid),
 		Avatar:contact.Avatar,
 		UserName:contact.UserName,
 	}
 
-	err = model.AddContact(int32(uid), body)
+	err = model.AddContact(int16(uid), body)
 	if err != nil {
 		helper.Print(ctx, "400", err.Error())
 	}else {

@@ -9,10 +9,10 @@ import (
 
 //帖子
 type Post struct {
-	BormLastId int32
+	BormLastId int16
 	Title string `borm:"title"`
-	Pid int32 `borm:"pid"`
-	Uperid int32 `borm:"uperid"`
+	Pid int16 `borm:"pid"`
+	Uperid int16 `borm:"uperid"`
 	Class string `borm:"class"`
 	Comment int `borm:"comment"`
 	Content string `borm:"content"`
@@ -22,8 +22,8 @@ type Post struct {
 
 //帖子用户链接 点赞链接也能用
 type PULink struct {
-	Pid int32 `borm:"pid"`
-	Uid int32 `borm:"uid"`
+	Pid int16 `borm:"pid"`
+	Uid int16 `borm:"uid"`
 }
 
 //帖子分类
@@ -34,9 +34,9 @@ type PClass struct {
 
 type Comment struct {
 	Content string `borm:"content"`
-	Cid int32 `borm:"cid"`
-	Uid int32 `borm:"uid"`
-	Pid int32 `borm:"pid"`
+	Cid int16 `borm:"cid"`
+	Uid int16 `borm:"uid"`
+	Pid int16 `borm:"pid"`
 }
 
 //插入帖子
@@ -60,7 +60,7 @@ func PostUp(post Post) error {
 }
 
 //post user 关联
-func PULinker(pid int32, uid int32) error {
+func PULinker(pid int16, uid int16) error {
 	pulin := PULink{
 		Pid:pid,
 		Uid:uid,
@@ -75,7 +75,7 @@ func PULinker(pid int32, uid int32) error {
 }
 
 //查询post
-func QueryPost(pid int32) (Post, error) {
+func QueryPost(pid int16) (Post, error) {
 	table := b.Table(DB.DB, "post").Debug()
 
 	var posts []Post
@@ -96,7 +96,7 @@ func QueryPost(pid int32) (Post, error) {
 }
 
 //帖子点赞
-func SetPostCommend(add int, uid int32, pid int32) error {
+func SetPostCommend(add int, uid int16, pid int16) error {
 	table := b.Table(DB.DB, "post").Debug()
 
 	//var uStr b.U
@@ -131,7 +131,7 @@ func SetPostCommend(add int, uid int32, pid int32) error {
 }
 
 //帖子点赞关联表更新
-func LinkPostLikes(add int, pid int32, uid int32) (count int, err error) {
+func LinkPostLikes(add int, pid int16, uid int16) (count int, err error) {
 	table := b.Table(DB.DB, "post_likes").Debug()
 
 	var liner = PULink{
@@ -216,7 +216,7 @@ func AddComment(commend Comment) error {
 	return err
 }
 
-func QueryCommentWithPid(pid int32, index, size int) (comments []Comment, err error) {
+func QueryCommentWithPid(pid int16, index, size int) (comments []Comment, err error) {
 	table := b.Table(DB.DB, "comments")
 
 	var count int = (index - 1) * size

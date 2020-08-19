@@ -18,7 +18,7 @@ type Postcontrl struct {
 //发布帖子请求实体化模型
 type postArgs struct {
 	Title string `name:"title" rule:"plainText" empty:"false" min:"1" max:"26" msg:"帖子标题[1-26]文字"`
-	Uperid int32 `name:"uperid" rule:"digit" empty:"false"`
+	Uperid int16 `name:"uperid" rule:"digit" empty:"false"`
 	Content string `name:"content" empty:"false"`
 	Files string `name:"files"`
 }
@@ -32,11 +32,11 @@ type postCommend struct {
 //评论请求体实体化
 type postComment struct {
 	Content string `name:"content" empty:"false" min:"1" max:"225" msg:"帖子标题[1-225]文字"`
-	Pid int32 `name:"pid" rule:"digit" empty:"false"`
+	Pid int16 `name:"pid" rule:"digit" empty:"false"`
 }
 
 type commentsReq struct {
-	Pid int32 `name:"pid" rule:"digit" empty:"false"`
+	Pid int16 `name:"pid" rule:"digit" empty:"false"`
 	Index int `name:"index" rule:"digit" empty:"false"`
 	size int `name:"size" rule:"digit" empty:"false"`
 }
@@ -100,7 +100,7 @@ func (that *Postcontrl)PostCommend(ctx *fasthttp.RequestCtx)  {
 
 	intUId, _ := strconv.Atoi(uid)
 
-	err = model.SetPostCommend(postCd.Add, int32(intUId), int32(postCd.Pid))
+	err = model.SetPostCommend(postCd.Add, int16(intUId), int16(postCd.Pid))
 	if err == nil {
 		helper.Print(ctx, "0", "success")
 	} else {
@@ -129,7 +129,7 @@ func (that *Postcontrl)PostComment(ctx *fasthttp.RequestCtx)  {
 
 	commend := model.Comment{
 		Content:cObject.Content,
-		Uid:int32(intUid),
+		Uid:int16(intUid),
 		Pid:cObject.Pid,
 	}
 
